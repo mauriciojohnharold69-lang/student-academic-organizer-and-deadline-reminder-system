@@ -1,0 +1,399 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StudyMate | Academic Organizer</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<div class="app">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+
+        <div class="brand">
+            <div class="brand-icon">S</div>
+            <div class="brand-name">
+                <h2>StudyMate<span>.</span></h2>
+                <p>ACADEMIC ORGANIZER</p>
+            </div>
+        </div>
+
+        <div class="sidebar-label">WORKSPACE</div>
+
+        <nav class="navigation">
+            <button class="nav-btn active" data-view="dashboard">
+                <span class="nav-icon">▦</span>
+                <span>Dashboard</span>
+            </button>
+
+            <button class="nav-btn" data-view="tasks">
+                <span class="nav-icon">✓</span>
+                <span>My Tasks</span>
+            </button>
+
+            <button class="nav-btn" data-view="deadlines">
+                <span class="nav-icon">◷</span>
+                <span>Deadlines</span>
+            </button>
+        </nav>
+
+        <div class="sidebar-spacer"></div>
+
+        <div class="sidebar-tip">
+            <div class="tip-icon">✦</div>
+            <h3>Stay focused!</h3>
+            <p>Small progress every day leads to big achievements.</p>
+        </div>
+
+        <div class="sidebar-footer">
+            <div class="footer-avatar">S</div>
+            <div>
+                <strong>StudyMate</strong>
+                <span>Student Workspace</span>
+            </div>
+        </div>
+
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="main">
+
+        <!-- TOP HEADER -->
+        <header class="topbar">
+
+            <div class="topbar-left">
+                <div class="breadcrumb">Workspace <span>/</span> <strong id="pageTitle">Dashboard</strong></div>
+                <p>Manage your academic journey in one place.</p>
+            </div>
+
+            <div class="topbar-right">
+                <div class="today-label">
+                    <span class="today-dot"></span>
+                    YOUR STUDY SPACE
+                </div>
+
+                <button class="add-btn" id="addTaskBtn">
+                    <span>＋</span> Add New Task
+                </button>
+            </div>
+
+        </header>
+
+        <!-- DASHBOARD -->
+        <section id="dashboard" class="view active">
+
+            <!-- HERO -->
+            <div class="hero">
+
+                <div class="hero-content">
+                    <span class="hero-tag">✦ YOUR ACADEMIC COMPANION</span>
+
+                    <h1>Make today<br>count<span>.</span></h1>
+
+                    <p>Stay organized, manage your deadlines, and keep moving toward your academic goals.</p>
+
+                    <button class="hero-button" id="heroAddTask">
+                        + Create a task
+                    </button>
+                </div>
+
+                <div class="hero-decoration">
+                    <div class="hero-circle circle-one"></div>
+                    <div class="hero-circle circle-two"></div>
+                    <div class="hero-book">📚</div>
+                    <div class="hero-floating floating-one">✦</div>
+                    <div class="hero-floating floating-two">✓</div>
+                </div>
+
+                <div class="hero-bottom-text">LEARN · PLAN · ACHIEVE</div>
+
+            </div>
+
+            <!-- STATISTICS -->
+            <div class="section-heading">
+                <div>
+                    <span class="eyebrow">OVERVIEW</span>
+                    <h2>Your productivity</h2>
+                </div>
+                <span class="section-note">Your academic activity at a glance</span>
+            </div>
+
+            <div class="stats">
+
+                <article class="stat stat-total">
+                    <div class="stat-top">
+                        <div class="stat-icon">▤</div>
+                        <span class="stat-caption">ALL ACTIVITIES</span>
+                    </div>
+                    <h2 id="totalTasks">0</h2>
+                    <p>Total tasks</p>
+                    <div class="stat-decoration"></div>
+                </article>
+
+                <article class="stat stat-pending">
+                    <div class="stat-top">
+                        <div class="stat-icon">◷</div>
+                        <span class="stat-caption">IN PROGRESS</span>
+                    </div>
+                    <h2 id="pendingTasks">0</h2>
+                    <p>Pending tasks</p>
+                    <div class="stat-decoration"></div>
+                </article>
+
+                <article class="stat stat-completed">
+                    <div class="stat-top">
+                        <div class="stat-icon">✓</div>
+                        <span class="stat-caption">ACCOMPLISHED</span>
+                    </div>
+                    <h2 id="completedTasks">0</h2>
+                    <p>Completed tasks</p>
+                    <div class="stat-decoration"></div>
+                </article>
+
+                <article class="stat stat-due">
+                    <div class="stat-top">
+                        <div class="stat-icon">⌛</div>
+                        <span class="stat-caption">COMING UP</span>
+                    </div>
+                    <h2 id="dueSoon">0</h2>
+                    <p>Due soon</p>
+                    <div class="stat-decoration"></div>
+                </article>
+
+            </div>
+
+            <!-- DASHBOARD PANELS -->
+            <div class="dashboard-grid">
+
+                <section class="panel focus-panel">
+                    <div class="panel-heading">
+                        <div>
+                            <span class="eyebrow">YOUR PRIORITIES</span>
+                            <h2>Today's Focus</h2>
+                            <p>Keep your attention on what matters.</p>
+                        </div>
+                        <span class="panel-symbol">✦</span>
+                    </div>
+
+                    <div id="dashboardTasks" class="task-container"></div>
+                </section>
+
+                <section class="panel progress-panel">
+                    <div class="panel-heading">
+                        <div>
+                            <span class="eyebrow">YOUR ACHIEVEMENTS</span>
+                            <h2>Study Progress</h2>
+                            <p>Every completed task is a step forward.</p>
+                        </div>
+                        <span class="panel-symbol">↗</span>
+                    </div>
+
+                    <div class="progress-visual">
+                        <div class="progress-circle">
+                            <div class="progress-circle-inner">
+                                <strong id="progressPercent">0%</strong>
+                                <span>COMPLETED</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="progress-bg">
+                        <div id="progressBar"></div>
+                    </div>
+
+                    <p id="progressText">0% completed</p>
+
+                    <div class="progress-message">
+                        <span>✦</span>
+                        Keep up the great work!
+                    </div>
+                </section>
+
+            </div>
+
+            <div class="dashboard-footer">
+                <span>STUDYMATE</span>
+                <span>Organize your work. Achieve your goals.</span>
+            </div>
+
+        </section>
+
+        <!-- MY TASKS -->
+        <section id="tasks" class="view">
+
+            <div class="page-intro">
+                <span class="eyebrow">YOUR WORKSPACE</span>
+                <h1>My Academic Tasks</h1>
+                <p>Keep track of assignments, projects, exams, and other activities.</p>
+            </div>
+
+            <div class="task-summary">
+                <div>
+                    <span class="summary-icon">▤</span>
+                    <div>
+                        <strong>Task Manager</strong>
+                        <p>Manage and organize your activities</p>
+                    </div>
+                </div>
+                <span class="summary-status">● ORGANIZED WORKSPACE</span>
+            </div>
+
+            <div class="toolbar">
+                <div class="search-wrap">
+                    <span>⌕</span>
+                    <input type="search" id="searchInput"
+                           placeholder="Search tasks or subjects...">
+                </div>
+
+                <select id="statusFilter">
+                    <option value="all">All Status</option>
+                    <option value="pending">Pending</option>
+                    <option value="completed">Completed</option>
+                </select>
+
+                <select id="priorityFilter">
+                    <option value="all">All Priorities</option>
+                    <option value="High">High</option>
+                    <option value="Medium">Medium</option>
+                    <option value="Low">Low</option>
+                </select>
+            </div>
+
+            <section class="panel tasks-panel">
+                <div class="panel-heading">
+                    <div>
+                        <span class="eyebrow">ACTIVITY LIST</span>
+                        <h2>All Tasks</h2>
+                        <p>Your academic activities in one organized list.</p>
+                    </div>
+                    <span class="panel-symbol">▤</span>
+                </div>
+
+                <div id="allTasks" class="task-container"></div>
+            </section>
+
+        </section>
+
+        <!-- DEADLINES -->
+        <section id="deadlines" class="view">
+
+            <div class="page-intro">
+                <span class="eyebrow">TIME MANAGEMENT</span>
+                <h1>Upcoming Deadlines</h1>
+                <p>Know what is coming next and prepare ahead of time.</p>
+            </div>
+
+            <div class="deadline-banner">
+                <div>
+                    <span class="eyebrow">PLAN AHEAD</span>
+                    <h2>Never miss an important date.</h2>
+                    <p>Stay prepared and finish your academic work on time.</p>
+                </div>
+                <div class="deadline-banner-icon">📅</div>
+            </div>
+
+            <section class="panel deadline-panel">
+                <div class="panel-heading">
+                    <div>
+                        <span class="eyebrow">YOUR SCHEDULE</span>
+                        <h2>Deadline Timeline</h2>
+                        <p>Your upcoming academic commitments.</p>
+                    </div>
+                    <span class="panel-symbol">◷</span>
+                </div>
+
+                <div id="deadlineTasks" class="task-container"></div>
+            </section>
+
+        </section>
+
+    </main>
+
+</div>
+
+<!-- ADD / EDIT TASK MODAL -->
+<div class="modal" id="taskModal">
+
+    <form id="taskForm" class="modal-content">
+
+        <div class="modal-top">
+            <div class="modal-icon">✦</div>
+            <button type="button" id="cancelBtn" class="modal-close">×</button>
+        </div>
+
+        <span class="eyebrow">STUDY PLANNER</span>
+        <h2 id="modalTitle">Create New Task</h2>
+        <p class="modal-description">Add the details of your academic activity below.</p>
+
+        <div class="form-group">
+            <label for="taskTitle">Task Title</label>
+            <input type="text" id="taskTitle" required maxlength="90"
+                   placeholder="e.g. Mathematics Assignment">
+        </div>
+
+        <div class="form-group">
+            <label for="taskSubject">Subject</label>
+            <input type="text" id="taskSubject" required maxlength="60"
+                   placeholder="e.g. Mathematics">
+        </div>
+
+        <div class="form-row">
+            <div class="form-group">
+                <label for="taskDate">Due Date</label>
+                <input type="date" id="taskDate" required>
+            </div>
+
+            <div class="form-group">
+                <label for="taskPriority">Priority</label>
+                <select id="taskPriority">
+                    <option>Medium</option>
+                    <option>High</option>
+                    <option>Low</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="taskType">Task Type</label>
+            <select id="taskType">
+                <option>Assignment</option>
+                <option>Project</option>
+                <option>Exam</option>
+                <option>Reading</option>
+                <option>Other</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="taskNotes">Notes <span>(Optional)</span></label>
+            <textarea id="taskNotes"
+                      placeholder="Add instructions or additional information..."></textarea>
+        </div>
+
+        <div class="modal-buttons">
+            <button type="button" class="cancel-action" id="cancelBtnSecondary">
+                Cancel
+            </button>
+
+            <button type="submit" class="add-btn">
+                Save Task <span>→</span>
+            </button>
+        </div>
+
+    </form>
+
+</div>
+
+<div id="toast" class="toast" role="status"></div>
+
+<script src="script.js"></script>
+</body>
+</html>
